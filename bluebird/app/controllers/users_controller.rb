@@ -30,10 +30,11 @@ class UsersController < ApplicationController
     def destroy
         @user = User.find(params[:id])
         @user.destroy
-        redirect_to users_url
+        redirect_to users_url #might need to render destroyed user
     end
 
+    private
     def user_params
-        params.require(:user).permit(:name, :email)
+        params.require(:user).permit(:username)
     end
 end
