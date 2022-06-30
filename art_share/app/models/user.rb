@@ -26,6 +26,13 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :commenter_id,
         class_name: :Comment
+
+    has_many :likes, as: :likeable
+
+    has_many :liked_artworks,
+        primary_key: :id,
+        foreign_key: :likeable_id,
+        class_name: :likeable_type
     
     validates :username, presence:true, uniqueness: true
 

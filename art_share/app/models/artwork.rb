@@ -28,6 +28,9 @@ class Artwork < ApplicationRecord
         foreign_key: :artwork_id,
         class_name: :Comment
 
+    has_many :likes, as: :likeable
+
+
     validates :title, :image_url, :artist_id, presence:true
     validates :title, uniqueness: {scope: :artist_id, messsage: "Artist already has this title"}
 end
