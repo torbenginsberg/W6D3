@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
     def index
-        @users = User.all
-        render json:@users
+        if params.has_key?(:username)
+            @users = User.where("username LIKE ?", "#{params[:username]}%")
+                if @users.empty?
+                    render json: user.errors.full_messages, status: :unprocessable_entity
+                end
+            render json:@users
+        else
+            @users = User.all
+            render json:@users
+        end
     end
 
     def create

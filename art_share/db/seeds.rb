@@ -18,6 +18,9 @@ share2 = ArtworkShare.create(artwork_id: 3, viewer_id: 7)
 share4 = ArtworkShare.create(artwork_id: artwork2.id, viewer_id: 1)
 share5 = ArtworkShare.create(artwork_id: artwork3.id, viewer_id: 6)
 
+comment1 = Comment.create(artwork_id: 1, commenter_id: 1, body: "is she smiling?")
+comment2 = Comment.create(artwork_id: 2, commenter_id: 2, body: "is it sunrise or sunset?")
+
 
 
 

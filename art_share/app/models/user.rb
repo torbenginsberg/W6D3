@@ -21,6 +21,11 @@ class User < ApplicationRecord
     has_many :shared_artworks, 
         through: :views,
         source: :artwork
+
+    has_many :comments, dependent: :destroy,
+        primary_key: :id,
+        foreign_key: :commenter_id,
+        class_name: :Comment
     
     validates :username, presence:true, uniqueness: true
 
