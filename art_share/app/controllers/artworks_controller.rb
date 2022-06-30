@@ -1,11 +1,16 @@
+require "byebug"
 class ArtworksController < ApplicationController
     def index
         if params.has_key?(:user_id)
-            @artworks = Artwork.where(artist_id: params[:user_id])
+            @artworks = Artwork
+                                .left_outer_joins(:shared_viewers)
+                                .where("artworks.artist_id = ? OR artwork_shares.viewer_id = ?", params[:user_id], params[:user_id])
+
+            render json:@artworks
         else
-        @artworks = Artwork.all
+            render json: artwork.errors.full_messages, status: :unprocessable_entity
         end
-        render json:@artworks
+        
     end
 
 
